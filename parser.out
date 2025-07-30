@@ -1,0 +1,155 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> statement_list
+Rule 2     statement_list -> statement statement_list
+Rule 3     statement_list -> statement
+Rule 4     statement -> PAPER NUMBER
+Rule 5     statement -> PEN NUMBER
+Rule 6     statement -> LINE NUMBER NUMBER NUMBER NUMBER
+
+Terminals, with rules where they appear
+
+LINE                 : 6
+NUMBER               : 4 5 6 6 6 6
+PAPER                : 4
+PEN                  : 5
+error                : 
+
+Nonterminals, with rules where they appear
+
+program              : 0
+statement            : 2 3
+statement_list       : 1 2
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . statement_list
+    (2) statement_list -> . statement statement_list
+    (3) statement_list -> . statement
+    (4) statement -> . PAPER NUMBER
+    (5) statement -> . PEN NUMBER
+    (6) statement -> . LINE NUMBER NUMBER NUMBER NUMBER
+
+    PAPER           shift and go to state 4
+    PEN             shift and go to state 5
+    LINE            shift and go to state 6
+
+    program                        shift and go to state 1
+    statement_list                 shift and go to state 2
+    statement                      shift and go to state 3
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> statement_list .
+
+    $end            reduce using rule 1 (program -> statement_list .)
+
+
+state 3
+
+    (2) statement_list -> statement . statement_list
+    (3) statement_list -> statement .
+    (2) statement_list -> . statement statement_list
+    (3) statement_list -> . statement
+    (4) statement -> . PAPER NUMBER
+    (5) statement -> . PEN NUMBER
+    (6) statement -> . LINE NUMBER NUMBER NUMBER NUMBER
+
+    $end            reduce using rule 3 (statement_list -> statement .)
+    PAPER           shift and go to state 4
+    PEN             shift and go to state 5
+    LINE            shift and go to state 6
+
+    statement                      shift and go to state 3
+    statement_list                 shift and go to state 7
+
+state 4
+
+    (4) statement -> PAPER . NUMBER
+
+    NUMBER          shift and go to state 8
+
+
+state 5
+
+    (5) statement -> PEN . NUMBER
+
+    NUMBER          shift and go to state 9
+
+
+state 6
+
+    (6) statement -> LINE . NUMBER NUMBER NUMBER NUMBER
+
+    NUMBER          shift and go to state 10
+
+
+state 7
+
+    (2) statement_list -> statement statement_list .
+
+    $end            reduce using rule 2 (statement_list -> statement statement_list .)
+
+
+state 8
+
+    (4) statement -> PAPER NUMBER .
+
+    PAPER           reduce using rule 4 (statement -> PAPER NUMBER .)
+    PEN             reduce using rule 4 (statement -> PAPER NUMBER .)
+    LINE            reduce using rule 4 (statement -> PAPER NUMBER .)
+    $end            reduce using rule 4 (statement -> PAPER NUMBER .)
+
+
+state 9
+
+    (5) statement -> PEN NUMBER .
+
+    PAPER           reduce using rule 5 (statement -> PEN NUMBER .)
+    PEN             reduce using rule 5 (statement -> PEN NUMBER .)
+    LINE            reduce using rule 5 (statement -> PEN NUMBER .)
+    $end            reduce using rule 5 (statement -> PEN NUMBER .)
+
+
+state 10
+
+    (6) statement -> LINE NUMBER . NUMBER NUMBER NUMBER
+
+    NUMBER          shift and go to state 11
+
+
+state 11
+
+    (6) statement -> LINE NUMBER NUMBER . NUMBER NUMBER
+
+    NUMBER          shift and go to state 12
+
+
+state 12
+
+    (6) statement -> LINE NUMBER NUMBER NUMBER . NUMBER
+
+    NUMBER          shift and go to state 13
+
+
+state 13
+
+    (6) statement -> LINE NUMBER NUMBER NUMBER NUMBER .
+
+    PAPER           reduce using rule 6 (statement -> LINE NUMBER NUMBER NUMBER NUMBER .)
+    PEN             reduce using rule 6 (statement -> LINE NUMBER NUMBER NUMBER NUMBER .)
+    LINE            reduce using rule 6 (statement -> LINE NUMBER NUMBER NUMBER NUMBER .)
+    $end            reduce using rule 6 (statement -> LINE NUMBER NUMBER NUMBER NUMBER .)
+
