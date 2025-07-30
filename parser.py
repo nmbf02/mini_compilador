@@ -38,4 +38,5 @@ def p_error(p):
         print("Error de sintaxis: fin de archivo inesperado")
 
 # Construir el parser
-parser = yacc.yacc()
+# parser = yacc.yacc()
+parser = yacc.yacc(debug=False, write_tables=False)

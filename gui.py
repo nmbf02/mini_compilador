@@ -9,6 +9,7 @@ from code_generator import generate_svg
 import cairosvg
 from PIL import Image, ImageTk
 import os
+import tempfile
 
 class CompilerApp:
     def __init__(self, root):
@@ -81,10 +82,18 @@ class CompilerApp:
         generate_svg()
         self.output.insert(tk.END, "\n✅ SVG generado: output/output.svg\n")
 
-        # 6. Mostrar imagen convertida
+        # 6. Mostrar imagen convertida (rutas absolutas y temporales)
         try:
-            cairosvg.svg2png(url="output/output.svg", write_to="output/temp.png")
-            img = Image.open("output/temp.png")
+            # Ruta absoluta al SVG
+            svg_path = os.path.join(os.getcwd(), "output", "output.svg")
+            # PNG temporal en carpeta segura del sistema
+            temp_png_path = os.path.join(tempfile.gettempdir(), "temp_output.png")
+
+            # Convertir SVG a PNG
+            cairosvg.svg2png(url=svg_path, write_to=temp_png_path)
+
+            # Mostrar la imagen en el canvas
+            img = Image.open(temp_png_path)
             img = img.resize((300, 300))
             self.imgtk = ImageTk.PhotoImage(img)
             self.canvas.configure(image=self.imgtk)
