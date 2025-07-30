@@ -49,3 +49,12 @@ def test_lexer(data):
     lexer.input(data)
     for token in lexer:
         print(token)
+
+# Obtener tokens como una lista de strings
+# (útil para pruebas o depuración)
+def get_tokens(data):
+    lexer.input(data)
+    tokens = []
+    for token in lexer:
+        tokens.append(str(token))
+    return tokens
