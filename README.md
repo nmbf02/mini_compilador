@@ -4,6 +4,8 @@ Este es un mini compilador desarrollado como parte de la **Tarea Semana 7**. Tra
 
 Cuenta con una **interfaz gráfica en Tkinter** que permite cargar un archivo, analizarlo y ver directamente la imagen generada desde el SVG convertido a PNG.
 
+<img width="600" height="977" alt="image" src="https://github.com/user-attachments/assets/e38cbd23-7029-4c2a-934e-c4a57451f92b" />
+
 ---
 
 ## 📌 Funcionalidades
